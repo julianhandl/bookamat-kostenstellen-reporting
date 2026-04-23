@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bookamat Kostenstellen-Reporting</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1>Kostenstellen-Reporting</h1>
+          <div class="subtitle">E1a pro Kostenstelle aus Bookamat-Daten</div>
+        </div>
+        <div id="snapshot-info" class="subtitle hidden"></div>
+      </header>
+
+      <!-- Phase 1: credentials -->
+      <section id="credentials-section" class="card">
+        <h2 class="card-title">Zugangsdaten</h2>
+        <p class="card-description">
+          Benutzername und API-Key werden nur im Browser gespeichert und bei
+          Bedarf an den lokalen Server weitergereicht.
+        </p>
+        <form id="credentials-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="cred-country">Land</label>
+              <input
+                id="cred-country"
+                name="country"
+                type="text"
+                value="at"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-field">
+              <label for="cred-year">Jahr</label>
+              <input
+                id="cred-year"
+                name="year"
+                type="number"
+                min="1900"
+                max="9999"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-field">
+              <label for="cred-username">Benutzername</label>
+              <input
+                id="cred-username"
+                name="username"
+                type="text"
+                required
+                autocomplete="username"
+              />
+            </div>
+            <div class="form-field">
+              <label for="cred-apikey">API-Key</label>
+              <input
+                id="cred-apikey"
+                name="apiKey"
+                type="password"
+                required
+                autocomplete="current-password"
+              />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button
+              id="load-latest-btn"
+              type="button"
+              data-variant="secondary"
+            >
+              Vorhandenen Snapshot laden
+            </button>
+            <button type="submit" data-variant="primary">
+              Snapshot abrufen
+            </button>
+          </div>
+          <div id="credentials-status" class="status" style="margin-top: 0.75rem"></div>
+        </form>
+      </section>
+
+      <!-- Phase 2: report -->
+      <section id="report-section" class="hidden">
+        <div class="tabs" id="tabs" role="tablist"></div>
+        <div id="tab-content"></div>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
