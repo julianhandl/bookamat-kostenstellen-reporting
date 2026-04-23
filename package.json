@@ -3,8 +3,7 @@
   "scripts": {
     "start": "bun run src/index.ts",
     "dev": "bun run --hot src/index.ts",
-    "snapshot": "bun run src/bookamat/scripts/fetch-snapshot.ts",
-    "verify": "bun run src/reporting/scripts/verify-2025.ts"
+    "snapshot": "bun run src/bookamat/scripts/fetch-snapshot.ts"
   },
   "dependencies": {
     "@types/node": "^25.6.0",
