@@ -20,11 +20,43 @@ const state = {
 const euroFormatter = new Intl.NumberFormat("de-AT", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
+  useGrouping: false,
 });
 
 function formatAmount(value) {
   return euroFormatter.format(value);
 }
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+  }
+}
+
+function flashCopied(el) {
+  el.dataset.copied = "true";
+  setTimeout(() => {
+    delete el.dataset.copied;
+  }, 600);
+}
+
+document.addEventListener("click", (event) => {
+  const cell = event.target.closest("td.num");
+  if (cell === null) return;
+  const text = cell.textContent.trim();
+  if (text.length === 0) return;
+  copyToClipboard(text);
+  flashCopied(cell);
+});
 
 function signClass(value) {
   if (value > 0.005) return "positive";

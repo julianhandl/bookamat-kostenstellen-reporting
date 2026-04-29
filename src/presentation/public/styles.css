@@ -276,6 +276,19 @@ th.num {
   font-variant-numeric: tabular-nums;
 }
 
+td.num {
+  cursor: copy;
+  transition: background-color 0.15s ease;
+}
+
+td.num:hover {
+  background: var(--muted);
+}
+
+td.num[data-copied="true"] {
+  background: var(--success, #d1fadf);
+}
+
 tr.sum-row td {
   font-weight: 600;
   background: var(--muted);
